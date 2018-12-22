@@ -3,7 +3,10 @@ RSpec.describe FacturapiRuby do
     expect(FacturapiRuby::VERSION).not_to be nil
   end
 
-  it "does something useful" do
-    expect(false).to eq(true)
+  it "configures api key" do
+    FacturapiRuby.configure do |config|
+      config.api_key = 'api_key'
+    end
+    expect(FacturapiRuby.configuration.api_key).to eq('api_key')
   end
 end
