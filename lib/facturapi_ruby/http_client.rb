@@ -3,6 +3,14 @@ require 'uri'
 require 'json'
 
 module FacturapiRuby
+  class FacturapiRubyError < StandardError
+    def initialize(data)
+      @data = data
+    end
+
+    attr_reader :data
+  end
+
   module HttpClient
 
     class << self
@@ -24,8 +32,7 @@ module FacturapiRuby
         if response.code == '200'
           JSON.parse(response.body)
         else
-          puts "=======> Error"
-          JSON.parse(response.body)
+          raise FacturapiRubyError.new(JSON.parse(response.body))
         end
       end
     end
