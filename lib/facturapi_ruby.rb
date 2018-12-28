@@ -1,4 +1,5 @@
 require "facturapi_ruby/version"
+require 'facturapi_ruby/configuration'
 
 module FacturapiRuby
   class << self
@@ -8,14 +9,5 @@ module FacturapiRuby
       self.configuration ||= Configuration.new
       yield(configuration)
     end
-  end
-
-  # Configuration
-  class Configuration
-    attr_accessor :api_key
-
-    def initialize
-      @api_key = ''
-    end
-  end
+  end 
 end
