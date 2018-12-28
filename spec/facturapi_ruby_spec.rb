@@ -9,4 +9,11 @@ RSpec.describe FacturapiRuby do
     end
     expect(FacturapiRuby.configuration.api_key).to eq('api_key')
   end
+
+  describe "invoices" do
+    it "creates invoces" do 
+      expect(FacturapiRuby::Invoices.create({})).to eq({})
+    end
+  end
 end
+

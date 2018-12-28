@@ -1,11 +1,11 @@
 require 'facturapi_ruby/http_client'
 
 module FacturapiRuby
-  module Invoices
+  module Customers
     class << self
       def create(options)
         HttpClient.post(
-          endpoint:    '/invoices',
+          endpoint:    '/customers',
           api_options: options
         )
       end
