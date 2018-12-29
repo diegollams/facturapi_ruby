@@ -1,7 +1,8 @@
-require 'facturapi_ruby/version'
 require 'facturapi_ruby/configuration'
-require 'facturapi_ruby/invoices'
+require 'facturapi_ruby/constants'
 require 'facturapi_ruby/customers'
+require 'facturapi_ruby/invoices'
+require 'facturapi_ruby/version'
 
 module FacturapiRuby
   class << self
