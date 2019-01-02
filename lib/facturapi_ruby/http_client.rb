@@ -25,7 +25,7 @@ module FacturapiRuby
         request.basic_auth(FacturapiRuby.configuration.api_key, '')
 
         response  = http.request(request)
-        file = Tempfile.open(%w(my .pdf))
+        file = Tempfile.open(['my', options[:file_ext]])
         file.binmode
         file.write(response.body)
 

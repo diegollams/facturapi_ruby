@@ -6,6 +6,14 @@ module FacturapiRuby
       def pdf(options)
         HttpClient.get_file(
           endpoint: "/invoices/#{options[:invoice_id]}/pdf",
+          file_ext: '.pdf'
+        )
+      end
+
+      def xml(options)
+        HttpClient.get_file(
+          endpoint: "/invoices/#{options[:invoice_id]}/xml",
+          file_ext: '.xml'
         )
       end
     end
