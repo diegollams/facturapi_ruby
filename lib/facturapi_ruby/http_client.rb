@@ -16,6 +16,26 @@ module FacturapiRuby
     class << self
       BASE_URL = 'https://www.facturapi.io/v1'
 
+      def get_file(options)
+        uri = URI(BASE_URL + options[:endpoint])
+
+        http         = Net::HTTP.new(uri.host, uri.port)
+        http.use_ssl = true
+        request      = Net::HTTP::Get.new(uri.request_uri)
+        request.basic_auth(FacturapiRuby.configuration.api_key, '')
+
+        response  = http.request(request)
+        file = Tempfile.open(%w(my .pdf))
+        file.binmode
+        file.write(response.body)
+
+        if response.code == '200'
+          file
+        else
+          raise FacturapiRubyError.new(JSON.parse(response.body))
+        end
+      end
+
       def post(options)
         uri = URI(BASE_URL + options[:endpoint])
 
