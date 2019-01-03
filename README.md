@@ -21,6 +21,14 @@ Or install it yourself as:
 
 ## Usage
 
+### Configuration
+
+```ruby
+FacturapiRuby.configure do |config|
+  config.api_key = 'api_key'
+end
+```
+
 ### Invoices
 
 ```ruby
