@@ -2,7 +2,6 @@
 
 Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/facturapi_ruby`. To experiment with that code, run `bin/console` for an interactive prompt.
 
-TODO: Delete this and the text above, and describe your gem
 
 ## Installation
 
@@ -22,7 +21,53 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+### Invoices
+
+```ruby
+begin
+    ext_invoice = FacturapiRuby::Invoices.create(
+                    customer:       customer_id,
+                    items:          items,
+                    payment_form:   payment_form,
+                    payment_method: payment_method,
+                    use:            use
+                )
+rescue FacturapiRuby::FacturapiRubyError => e
+    puts e.data['message']
+end
+```
+
+### Customers
+
+```ruby
+ begin
+    customer = FacturapiRuby::Customers.create(
+                legal_name: invoice_information.business_name,
+                email:      invoice_information.email,
+                tax_id:     invoice_information.rfc
+            )
+    client.update_column(:customer_id, customer['id'])
+rescue FacturapiRuby::FacturapiRubyError => e
+    e.data['message']
+end
+```
+
+### Pdf
+
+Remember to close tempfile
+
+```ruby
+pdf = FacturapiRuby::Files.pdf(invoice_id: invoice_id)
+pdf.close
+```
+
+### Xml
+Remember to close tempfile
+
+```ruby
+xml = FacturapiRuby::Files.xml(invoice_id: @invoice.ext_invoice_id)
+xml.close
+```
 
 ## Development
 
@@ -32,7 +77,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/facturapi_ruby. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/diegollams/facturapi_ruby. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 ## License
 
@@ -41,3 +86,23 @@ The gem is available as open source under the terms of the [MIT License](https:/
 ## Code of Conduct
 
 Everyone interacting in the FacturapiRuby project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/facturapi_ruby/blob/master/CODE_OF_CONDUCT.md).
+
+## TODO
+
+### Invoices
+- Show
+- List
+- Delete
+- Update
+### Invoices
+- Show
+- List
+- Delete
+- Update
+- Zip
+### Product
+- Create
+- Show
+- List
+- Delete
+- Update

@@ -10,8 +10,8 @@ Gem::Specification.new do |spec|
   spec.email         = ["diegollams@gmail.com"]
 
   spec.summary       = %q{Crea Facturas Electrónicas válidas lo más fácil posible (CFDI) https://facturapi.io}
-  spec.description   = %q{Crea Facturas Electrónicas válidas lo más fácil posible (CFDI) https://facturapi.io}
-  spec.homepage      = ""
+  spec.description   = %q{Http client for https://facturapi.io}
+  spec.homepage      = "https://github.com/diegollams/facturapi_ruby"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
