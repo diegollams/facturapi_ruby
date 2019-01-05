@@ -49,7 +49,8 @@ module FacturapiRuby
         http.set_debug_output($stdout)
 
         response  = http.request(request)
-        if response.code == '200'
+        puts response.code
+        if response.code.start_with? '20'
           JSON.parse(response.body)
         else
           raise FacturapiRubyError.new(JSON.parse(response.body))
