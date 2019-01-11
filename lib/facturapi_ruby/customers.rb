@@ -9,6 +9,13 @@ module FacturapiRuby
           api_options: options
         )
       end
+
+      def update(customer_id, options)
+        HttpClient.put(
+          endpoint:    "/customers/#{customer_id}",
+          api_options: options
+        )
+      end
     end
   end
 end
