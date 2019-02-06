@@ -17,38 +17,50 @@ module FacturapiRuby
       BASE_URL = 'https://www.facturapi.io/v1'
 
       def get_file(options)
-        uri = URI(BASE_URL + options[:endpoint])
+        response = request(Net::HTTP::Get, options)
 
-        http         = Net::HTTP.new(uri.host, uri.port)
-        http.use_ssl = true
-        request      = Net::HTTP::Get.new(uri.request_uri)
-        request.basic_auth(FacturapiRuby.configuration.api_key, '')
-
-        response  = http.request(request)
         file = Tempfile.open(['my', options[:file_ext]])
         file.binmode
         file.write(response.body)
 
-        if response.code == '200'
+        if response.code.start_with? '20'
           file
         else
           raise FacturapiRubyError.new(JSON.parse(response.body))
         end
       end
 
+      def get(options)
+        response = request(Net::HTTP::Get, options)
+
+        json_response(response)
+      end
+
       def post(options)
-        uri = URI(BASE_URL + options[:endpoint])
+        response = request(Net::HTTP::Post, options) do |request|
+          request.body = options[:api_options].to_json
+        end
+        
+        json_response(response)
+      end
 
-        http         = Net::HTTP.new(uri.host, uri.port)
-        http.use_ssl = true
+      def put(options)
+        response = request(Net::HTTP::Put, options) do |request|
+          request.body = options[:api_options].to_json
+        end
 
-        request      = Net::HTTP::Post.new(uri.request_uri, 'Content-Type' => 'application/json')
-        request.body = options[:api_options].to_json
-        request.basic_auth(FacturapiRuby.configuration.api_key, '')
+        json_response(response)
+      end
 
-        http.set_debug_output($stdout)
+      def delete(options)
+        response = request(Net::HTTP::Delete, options)
 
-        response  = http.request(request)
+        json_response(response)
+      end
+
+      private
+
+      def json_response(response)
         if response.code.start_with? '20'
           JSON.parse(response.body)
         else
@@ -56,24 +68,22 @@ module FacturapiRuby
         end
       end
 
-      def put(options)
+      def request(request_method, options)
         uri = URI(BASE_URL + options[:endpoint])
 
         http         = Net::HTTP.new(uri.host, uri.port)
         http.use_ssl = true
 
-        request      = Net::HTTP::Put.new(uri.request_uri, 'Content-Type' => 'application/json')
-        request.body = options[:api_options].to_json
+        request      = request_method.new(uri.request_uri, 'Content-Type' => 'application/json')
+        # request.body = options[:api_options].to_json
+
+        yield(request) if block_given?
+
         request.basic_auth(FacturapiRuby.configuration.api_key, '')
 
-        http.set_debug_output($stdout)
+        http.set_debug_output($stdout) if FacturapiRuby.configuration.debug_output
 
-        response  = http.request(request)
-        if response.code.start_with? '20'
-          JSON.parse(response.body)
-        else
-          raise FacturapiRubyError.new(JSON.parse(response.body))
-        end
+        http.request(request)
       end
     end
   end
