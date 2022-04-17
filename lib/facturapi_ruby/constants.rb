@@ -101,4 +101,42 @@ module FacturapiRuby
     ENAJENACION_DE_ACCIONES_EN_BOLSA_DE_VALORES: "630",
     REGIMEN_DE_LOS_INGRESOS_POR_OBTENCION_DE_PREMIOS: "615"
   }
+
+  REGIMEN_FISCAL = {
+    '603':	'Personas Morales con Fines no Lucrativos',
+    '605':	'Sueldos y Salarios e Ingresos Asimilados a Salarios',
+    '606':	'Arrendamiento',
+    '608':	'Demás ingresos',
+    '609':	'Consolidación',
+    '610':	'Residentes en el Extranjero sin Establecimiento Permanente en México',
+    '611':	'Ingresos por Dividendos (socios y accionistas)',
+    '612':	'Personas Físicas con Actividades Empresariales y Profesionales',
+    '614':	'Ingresos por intereses',
+    '616':	'Sin obligaciones fiscales',
+    '620':	'Sociedades Cooperativas de Producción que optan por diferir sus ingresos',
+    '621':	'Incorporación Fiscal',
+    '622':	'Actividades Agrícolas, Ganaderas, Silvícolas y Pesqueras',
+    '623':	'Opcional para Grupos de Sociedades',
+    '624':	'Coordinados',
+    '628':	'Hidrocarburos',
+    '607':	'Régimen de Enajenación o Adquisición de Bienes',
+    '629':	'De los Regímenes Fiscales Preferentes y de las Empresas Multinacionales',
+    '630':	'Enajenación de acciones en bolsa de valores',
+    '615':	'Régimen de los ingresos por obtención de premios',
+    '625':	'Régimen de las Actividades Empresariales con ingresos a través de Plataformas Tecnológicas',
+    '626':	'Régimen Simplificado de Confianza',
+  }.freeze
+
+  CANCELACION_FISCAL = {
+    '01': 'Comprobante emitido con errores con relación',
+    '02': 'Comprobante emitido con errores sin relación',
+    '03': 'No se llevó a cabo la operación',
+    '04': 'Operación nominativa relacionada en la factura global',
+  }.freeze
+
+  TAXABILITY = {
+    '01': 'No objeto de impuesto',
+    '02': 'Sí objeto de impuesto',
+    '03': 'Sí objeto de impuesto, pero no obligado a desglose',
+  }.freeze
 end

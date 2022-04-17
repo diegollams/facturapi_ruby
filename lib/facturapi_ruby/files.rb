@@ -5,14 +5,14 @@ module FacturapiRuby
     class << self
       def pdf(options)
         HttpClient.get_file(
-          endpoint: "/invoices/#{options[:invoice_id]}/pdf",
+          endpoint: "/v1/invoices/#{options[:invoice_id]}/pdf",
           file_ext: '.pdf'
         )
       end
 
       def xml(options)
         HttpClient.get_file(
-          endpoint: "/invoices/#{options[:invoice_id]}/xml",
+          endpoint: "/v1/invoices/#{options[:invoice_id]}/xml",
           file_ext: '.xml'
         )
       end

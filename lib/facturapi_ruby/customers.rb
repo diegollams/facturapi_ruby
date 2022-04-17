@@ -5,14 +5,14 @@ module FacturapiRuby
     class << self
       def create(options)
         HttpClient.post(
-          endpoint:    '/customers',
+          endpoint:    '/v1/customers',
           api_options: options
         )
       end
 
       def update(customer_id, options)
         HttpClient.put(
-          endpoint:    "/customers/#{customer_id}",
+          endpoint:    "/v1/customers/#{customer_id}",
           api_options: options
         )
       end

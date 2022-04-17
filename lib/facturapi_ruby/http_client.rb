@@ -14,7 +14,7 @@ module FacturapiRuby
   module HttpClient
 
     class << self
-      BASE_URL = 'https://www.facturapi.io/v1'
+      BASE_URL = 'https://www.facturapi.io'
 
       def get_file(options)
         response = request(Net::HTTP::Get, options)
