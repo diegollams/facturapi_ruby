@@ -4,6 +4,10 @@ require 'facturapi_ruby/customers'
 require 'facturapi_ruby/files'
 require 'facturapi_ruby/invoices'
 require 'facturapi_ruby/version'
+require 'facturapi_ruby/v2/customers'
+require 'facturapi_ruby/v2/files'
+require 'facturapi_ruby/v2/invoices'
+
 
 module FacturapiRuby
   class << self
