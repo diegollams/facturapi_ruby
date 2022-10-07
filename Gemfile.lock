@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    facturapi_ruby (1.1.0)
+    facturapi_ruby (2.1.0)
 
 GEM
   remote: https://rubygems.org/
@@ -32,4 +32,4 @@ DEPENDENCIES
   rspec (~> 3.0)
 
 BUNDLED WITH
-   1.16.1
+   1.17.3

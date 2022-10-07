@@ -4,9 +4,11 @@ require 'facturapi_ruby/customers'
 require 'facturapi_ruby/files'
 require 'facturapi_ruby/invoices'
 require 'facturapi_ruby/version'
+require 'facturapi_ruby/receipts'
 require 'facturapi_ruby/v2/customers'
 require 'facturapi_ruby/v2/files'
 require 'facturapi_ruby/v2/invoices'
+require 'facturapi_ruby/v2/receipts'
 
 
 module FacturapiRuby
@@ -17,5 +19,5 @@ module FacturapiRuby
       self.configuration ||= Configuration.new
       yield(configuration)
     end
-  end 
+  end
 end
