@@ -1,4 +1,4 @@
- module FacturapiRuby
+module FacturapiRuby
   class Configuration
     attr_accessor :api_key, :debug_output
 
